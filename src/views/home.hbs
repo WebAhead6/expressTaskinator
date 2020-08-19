@@ -1,0 +1,49 @@
+ <ul class="todos list-group mx-auto text-light">
+     {{#each data}}
+        <li class="text-center main">
+          <span class="todotext {{this.id}}">
+              {{this.task}}
+                  {{#if this.subtasks.length}}
+                  <ul>
+                    {{#each this.subtasks}}
+                    
+                              <li class="text-center subli">
+                                  {{#if this.strike}}
+                                       <span class="todotext insideli striked">{{this.text}}</span>
+                                     {{else}}
+                                      <span class="todotext insideli">{{this.text}}</span>
+                                  {{/if}}
+                                  <div class="igroup">
+                                        <i class="fa fa-trash delete" aria-hidden="true"></i>
+                                  </div>
+                              </li>
+                      
+                    {{/each}}
+                  </ul>
+                  {{/if}}
+           </span>
+          <div class="igroup">
+            <i class="fa fa-plus plus" aria-hidden="true"></i>
+            <i class="fa fa-trash delete" aria-hidden="true"></i>
+          </div>
+              
+          </li>
+      {{/each}}
+      </ul>
+      
+      <hr class="dashed" />
+      <form class="add text-center my-4">
+        <div class="input-group">
+          <input
+            class="form-control m-auto"
+            type="text"
+            name="add"
+            placeholder="Enter a new Task "
+            required
+          />
+          <span class="input-group-btn">
+            <button class="btn btn-info">Add Task</button>
+          </span>
+        </div>
+      </form>
+    </div>

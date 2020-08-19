@@ -1,0 +1,33 @@
+[
+  {
+    "id": "_v7dv7g41t",
+    "task": "Finish the javascript express porject",
+    "subtasks": [
+      {"text": "use handlebars", "strike": true},
+      {"text": "add dates!", "strike": false}
+    ],
+    "author": "Bader",
+    "date": "18/08/2020"
+  },
+  {
+    "id": "_v7dv7g41b",
+    "task": "take nala for a stride",
+    "subtasks": [],
+    "author": "Bader",
+    "date": ""
+  },
+  {
+    "id": "_v7dv7g41s",
+    "task": "get a beer!",
+    "subtasks": [{"text": "buy some wine aswell", "strike": false}],
+    "author": "Bader",
+    "date": ""
+  },
+  {
+    "id": "_rbwrlt3o1",
+    "task": "something new",
+    "subtasks": [],
+    "author": "Admin",
+    "date": "18/08/2020"
+  }
+]

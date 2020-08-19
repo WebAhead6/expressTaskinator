@@ -1,0 +1,22 @@
+{
+  "name": "taskinator-express",
+  "version": "1.0.0",
+  "description": "express todolist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js -e js,hbs"
+  },
+  "author": "Bader Fahoum",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0"
+  },
+  "devDependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4",
+    "serve-favicon": "^2.5.0"
+  }
+}
