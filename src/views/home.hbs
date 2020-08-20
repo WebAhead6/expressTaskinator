@@ -1,11 +1,11 @@
  <ul class="todos list-group mx-auto text-light">
-     {{#each data}}
+     {{#each taskData}}
         <li class="text-center main">
           <span class="todotext {{this.id}}">
-              {{this.task}}
-                  {{#if this.subtasks.length}}
+              {{this.text}}
+                  {{#if this.sub.length}}
                   <ul>
-                    {{#each this.subtasks}}
+                    {{#each this.sub}}
                     
                               <li class="text-center subli">
                                   {{#if this.strike}}

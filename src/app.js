@@ -2,8 +2,7 @@ const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const favicon = require("serve-favicon");
-
-const taskData = require("../data.json");
+const model = require("../model");
 
 const compression = require("compression");
 const fs = require("fs");
@@ -26,44 +25,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 // instruct express to get all our static pages (style.css , etc.)
-app.use(express.static(path.join(__dirname, "..", "public"), {maxAge: "30d"}));
+app.use(express.static(path.join(__dirname, "..", "public")));
 // set the handlebars template path
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
 const relativeDBpath = path.join(__dirname, "..", "data.json");
-
-// database getters and setters
-const getDatabase = () => {
-  return taskData;
-};
-
-const setToDatabase = (obj) => {
-  let data = getDatabase();
-  data.push(obj);
-  console.log(data);
-  fs.writeFileSync(relativeDBpath, JSON.stringify(data));
-};
-
-const searchDBandToggle = (id, text) => {
-  getDatabase().forEach((e) => {
-    if (e.id === id) {
-      e.subtasks.forEach((subt) => {
-        if (subt.text === text) {
-          if (subt.strike) {
-            subt.strike = false;
-          } else {
-            subt.strike = true;
-          }
-        }
-      });
-    }
-  });
-};
-
-const updateDatabase = (newData) => {
-  fs.writeFileSync(relativeDBpath, JSON.stringify(newData));
-};
 
 let IDgenerator = () => {
   // Math.random should be unique because of its seeding algorithm.
@@ -86,35 +53,76 @@ app.engine(
   })
 );
 
+// homepage
 app.get("/", (req, res) => {
-  console.log("we are rendering home!");
-  getDatabase();
-  res.render("home", {
-    data: taskData,
+  // console.log("we are rendering home!");
+  let taskData = {};
+  model.getAllTasks().then((data) => {
+    // console.log(data);
+    // here we are building a datastructure and sending it to the front end based on what is needed to be displayed
+    data.forEach((ele) => {
+      if (taskData[ele.taskid]) {
+        taskData[ele.taskid].sub.push({
+          text: ele.subtasktext,
+          strike: ele.strike,
+        });
+      } else {
+        if (ele.subtaskid) {
+          taskData[ele.taskid] = {
+            id: ele.taskid,
+            text: ele.tasktext,
+            sub: [{text: ele.subtasktext, strike: ele.strike}],
+          };
+        } else {
+          taskData[ele.taskid] = {
+            id: ele.taskid,
+            text: ele.tasktext,
+            sub: [],
+          };
+        }
+      }
+    });
+
+    // console.log(taskData);
+    res.render("home", {taskData});
   });
 });
 
+// add task handler
 app.post("/addTask", (req, res) => {
-  let id = IDgenerator();
-
-  let taskAdded = {
-    id,
-    ...req.body,
-  };
-
-  console.log("we are adding new data in the form of: ==>", taskAdded);
-  setToDatabase(taskAdded);
+  // console.log(req.body);
+  model.createNewTask(req.body);
   res.redirect("/");
 });
 
 app.post("/addSubTask", (req, res) => {
   console.log("we are adding a new subtask in the taskList ==> ", req.body);
-  res.redirect("/");
+  model.createNewSubTask(req.body).then(() => {
+    console.log("updated record successfully");
+    res.redirect("/");
+  });
 });
 
 app.post("/strikeTodo", (req, res) => {
   console.log("---------> strik ---> ", req.body);
-  searchDB(req.body.taskID);
+  model.getSubtasksParentTask(req.body.paretTaskID).then((subtask) => {
+    console.log("subtask ----------> ", subtask);
+    subtask.forEach((sub) => {
+      if (sub.subtasktext.trim() === req.body.toStrike.trim()) {
+        model.toggleSubtask(sub.subtaskid).then(() => {
+          res.redirect("/");
+        });
+      }
+    });
+  });
+});
+
+app.post("/deleteTask", (req, res) => {
+  console.log("front end sent us this ==> :", req.body);
+  model.deleteTask(req.body).then(() => {
+    console.log("task deleted successfully, database about to be updated");
+    res.redirect("/");
+  });
 });
 
 module.exports = app;

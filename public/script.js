@@ -12,52 +12,8 @@ const addForm = document.querySelector(".add");
 const ullist = document.querySelector(".todos");
 const search = document.querySelector(".search input");
 
-// const delete = document.querySelector(".delete");
-
-// console.log(ullist);
-// ------------------------------  the template generator, which creates a different markup for a MAIN LI which could contain other LIs and differentiate with a SUB LI - with does not
-// const generateTemplate = (todo, elementToAdd, targetEl = ``) => {
-//   //create the li
-//   let taskli = document.createElement("li");
-//   taskli.classList.add("text-center");
-//   // format the markup
-//   let spanli = document.createElement("span");
-//   spanli.classList.add("todotext");
-//   spanli.textContent = `${todo}`;
-
-//   taskli.appendChild(spanli);
-//   // this is all the elements all li should contain
-//   let divGrouper = document.createElement("div");
-//   divGrouper.classList.add("igroup");
-//   let trash = document.createElement("i");
-//   let plus = document.createElement("i");
-//   trash.classList.add("fa", "fa-trash", "delete");
-//   plus.classList.add("fa", "fa-plus", "plus");
-//   divGrouper.appendChild(trash);
-//   taskli.appendChild(divGrouper);
-//   // console.log(taskli);
-//   // if its a mainn LI the flag should be with ul
-//   if (elementToAdd === "ul") {
-//     taskli.classList.add("main");
-//     taskli.lastChild.prepend(plus);
-//     ullist.appendChild(taskli);
-//   }
-//   /// a sub li element
-//   if (elementToAdd === "li") {
-//     taskli.classList.add("subli");
-//     taskli.querySelector("span").classList.add("insideli");
-//     targetEl.parentElement.parentElement
-//       .querySelector("span")
-//       .appendChild(taskli);
-//   }
-
-//   return taskli;
-// };
 // the form selector
 addForm.addEventListener("submit", (e) => {
-  // const templateFlag = "ul";
-  // console.log(addForm.add.value);
-  // const li = document.createElement('li');
   let todo = addForm.add.value.trim();
   // ullist.prepend(li);
   if (todo.length) {
@@ -65,17 +21,19 @@ addForm.addEventListener("submit", (e) => {
     let timestamp = getCurrentTime();
 
     const newtask = {
-      task: todo,
-      subtasks: [],
-      author: "Admin",
-      date: timestamp,
+      tasktext: todo,
+      author_id: 1,
+      taskdate: timestamp,
     };
-    // generateTemplate(todo, templateFlag);
-    // console.log("from the front end we send ", newtas;
+    // e.preventDefault();
+    // console.log("from the front end we send ", newtask);
     fetch("/addTask", {
       method: "POST",
       headers: {"content-type": "application/json"},
       body: JSON.stringify(newtask),
+    }).then(() => {
+      // console.log("exrctyvuiokpl[exrctvybunimok,rctfvybuni");
+      location.reload();
     });
 
     addForm.reset();
@@ -96,48 +54,89 @@ function getCurrentTime() {
   return dd + "/" + mm + "/" + yyyy;
 }
 
-// using event delegation to delete todos -- Mario's brilliant Idea :) but our implementation
 ullist.addEventListener("click", (e) => {
   // console.log(e.target);
   let data;
   let classLists = e.target.classList;
-  // classLists.forEach((e) => console.log(e));
   if (classLists[1] === "insideli") {
     data = {
-      taskID: e.target.parentElement.parentElement.parentElement.classList[1],
+      paretTaskID:
+        e.target.parentElement.parentElement.parentElement.classList[1],
       toStrike: e.target.textContent.trim(),
     };
-  } else if (classLists.contains("todotext")) {
-    data = {
-      taskID: classLists[1],
-      toStrike: e.target.textContent.trim().split("\n")[0],
-    };
+
+    // console.log(data);
+    fetch("/strikeTodo", {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify(data),
+    }).then(() => {
+      // console.log("exrctyvuiokpl[exrctvybunimok,rctfvybuni");
+      location.reload();
+    });
+    taskCompleter(e.target);
   }
 
-  console.log(data);
-
-  fetch("/strikeTodo", {
-    method: "POST",
-    headers: {"content-type": "application/json"},
-    body: JSON.stringify(data),
-  });
-  taskCompleter(e.target);
-
   if (e.target.classList.contains("plus")) {
-    console.log(e.target.parentElement.parentElement);
-    let templateFlag = "li";
     let todo = addForm.add.value.trim();
     // ullist.prepend(li);
     if (todo.length) {
-      generateTemplate(todo, templateFlag, e.target);
+      // data.subtasktext, data.author_id, data.task_id, FALSE;
+      console.log(todo, e.target);
+      let data = {
+        subtasktext: todo,
+        author_id: 1,
+        task_id:
+          e.target.parentElement.parentElement.firstChild.nextSibling
+            .classList[1],
+      };
+
+      fetch("/addSubtask", {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify(data),
+      }).then(() => {
+        // console.log("exrctyvuiokpl[exrctvybunimok,rctfvybuni");
+        location.reload();
+      });
+
       addForm.reset();
     } else {
       alert("please enter something");
     }
   }
   if (classLists.contains("delete")) {
-    console.log(e.target);
-    e.target.parentElement.parentElement.remove();
+    // the pressed element
+    let target = e.target.parentElement.parentElement.firstChild.nextSibling;
+    // e.target.parentElement.parentElement.remove();
+    let data = {};
+
+    // check if we are clicking a subtask
+    if (target.classList.contains("insideli")) {
+      let mainTaskID =
+        target.parentElement.parentElement.parentElement.classList[1];
+
+      data = {
+        taskid: mainTaskID,
+        text: target.textContent,
+        flag: "sub",
+      };
+    } else {
+      // this means we are selecting a Main TASK not a subtask
+      data = {
+        taskid: target.classList[1],
+        flag: "main",
+      };
+    }
+    // involke the model controller
+    fetch("/deleteTask", {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify(data),
+    }).then(() => {
+      // console.log("exrctyvuiokpl[exrctvybunimok,rctfvybuni");
+      location.reload();
+    });
   }
 });
 

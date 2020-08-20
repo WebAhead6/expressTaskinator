@@ -111,7 +111,7 @@ h2:after {
 }
 
 body {
-  background-color: #2e4052;
+  background-color: #202e3b;
 }
 /* ul {
   display: flex;
@@ -139,15 +139,15 @@ li .todotext .igroup {
 }
 li.main {
   width: 100%;
-  border: 1px solid #ffc857;
+  border: 1px solid #fab835;
   border-top: 0px;
   border-left: 0px;
   border-radius: 40px 40px 40px 40px;
   padding: 1.5%;
   padding-right: 3%;
 
-  color: #ffc857;
-  background-color: #2e4052;
+  color: #fab835;
+  background-color: #202e3b;
   font-size: 24px;
   transition: 0.3s ease-in-out;
 }
@@ -195,13 +195,12 @@ hr.dashed {
 
 .striked {
   text-decoration: line-through;
-  color: #eb8a90;
+  color: #fa737c;
 }
 .striked::before {
   display: inline-block;
   padding-right: 5px;
-  content: "\2611"; /* Some fancy character */
-  color: #ffffff;
+  content: url("/images/done.png");
 }
 
 .delete {
