@@ -1,8 +1,9 @@
+ {{#if activePage.signedIn}}
  <ul class="todos list-group mx-auto text-light">
      {{#each taskData}}
         <li class="text-center main">
           <span class="todotext {{this.id}}">
-              {{this.text}}
+              {{this.text}} - {{this.user}}
                   {{#if this.sub.length}}
                   <ul>
                     {{#each this.sub}}
@@ -47,3 +48,7 @@
         </div>
       </form>
     </div>
+{{else}}
+  <div class="loginPlease">You need to Log in in Order to see Taskinator's lists</div>
+
+{{/if}}

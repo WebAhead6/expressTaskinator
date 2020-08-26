@@ -6,7 +6,7 @@ CREATE TABLE users (
   userid SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   email TEXT NOT NULL,
-  userpass TEXT NOT NULL
+  password VARCHAR(1000) NOT NULL
 );
 
 CREATE TABLE tasks (
@@ -25,7 +25,7 @@ strike BOOLEAN NOT NULL
 );
 
 
-INSERT INTO users (username, email,userpass) VALUES 
+INSERT INTO users (username, email,password) VALUES 
 ('bader', 'badf@gmail.com', 'pass'),
 ('yas', 'yas@gmail.com', 'pass'),
 ('ali', 'ali@gmail.com', 'pass');

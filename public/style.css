@@ -221,11 +221,177 @@ hr.dashed {
   align-items: center;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   li.main {
     font-size: 80%;
   }
   .insideli {
     font-size: 50%;
   }
+}
+
+/***********************************************
+    $navbar
+  ***********************************************/
+:root {
+  --limited-width-container: 61.25em;
+  --color-text-main: rgb(199, 199, 199);
+}
+
+.navbar_ {
+  padding: 1rem 0;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.navbar_ > ul > li {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar__container {
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.navbar__list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar__link {
+  color: var(--color-text-main);
+  text-transform: uppercase;
+}
+
+.navbar__link:hover {
+  border-bottom: solid 3px var(--color-text-main);
+}
+
+.navbar__link--active {
+  border-bottom: solid 3px var(--color-text-main);
+}
+
+.toggleBtn {
+  align-self: flex-start;
+}
+.toggleBTN {
+  display: flex;
+  user-select: none;
+  outline: none;
+  background-image: url("/iconfinder_menu-alt_134216.svg");
+  cursor: pointer;
+  color: #ffffff;
+  padding: 15px 16px;
+  border: #ffffff;
+  background-color: transparent;
+}
+.toggleBTN:focus {
+  outline: none;
+}
+/*APP DRAWER CSS*/
+
+.app_drawer {
+  /* Hint: the elements position is important */
+  text-align: center;
+  position: fixed;
+  width: 40%;
+  height: 100vh;
+  transform: translateX(-100%);
+  background-color: rgb(142, 211, 245);
+  transition: all 0.5s ease-in;
+  box-shadow: 1px 1px;
+  z-index: 1;
+}
+
+.app_drawer--visible {
+  /*styles for when the drawer is visible*/
+  transform: translateX(-50%);
+}
+
+@media only screen and (max-width: 1000px) {
+  .app_drawer--visible {
+    /*styles for when the drawer is visible*/
+    transform: translateX(0%);
+  }
+}
+
+/***********************************************
+    $login page
+  ***********************************************/
+.login__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+label {
+  width: 100%;
+  text-align: left;
+}
+
+form > label {
+  width: 100%;
+}
+
+form > label > input {
+  width: 100%;
+  padding: 10px;
+}
+
+.thic {
+  width: 50%;
+  border-width: 5px !important;
+  border-color: #47e5bc !important;
+}
+
+/* a {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  color: #f4f4f4;
+  text-transform: uppercase;
+} */
+
+.btnT {
+  text-decoration: none;
+  border: 1px solid rgb(146, 148, 248);
+  position: relative;
+  overflow: hidden;
+  color: white;
+  width: 50%;
+  background: transparent;
+  padding: 10px;
+  transition: all 0.5s ease-in;
+}
+
+.btnT:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+}
+
+.btnT:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(146, 148, 248, 0.4),
+    transparent
+  );
+  transition: all 650ms;
+}
+
+.btnT:hover:before {
+  left: 100%;
 }

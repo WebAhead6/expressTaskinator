@@ -1,0 +1,17 @@
+<section class="main__container--limited-width">
+  <h1 class="main__title">LOGIN</h1>
+
+  <form class="login__form" action="/authenticate" method="POST">
+  <hr class="thic">
+    <label for="username">Username:<br>
+    <input class="text-input" type="text" name="username" placeholder="Username"><br />
+    </label>
+    <label for="password">Password:<br>
+    <input class="text-input" type="password" name="password" placeholder="Password"><br />
+     </label>
+    <button class="submit btnT" type="submit">Log In</button>
+  </form>
+   <div class="errorMsg" style="display:flex; justify-content:center; color:red">{{error}}</div>
+    <div class="successMsg" style="display:flex; justify-content:center; color:rgb(84, 206, 94)">{{success}}</div>
+
+</section>

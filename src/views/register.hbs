@@ -1,0 +1,31 @@
+<body onload="clinetAuth()">
+
+
+<section class="main__container--limited-width">
+  <h1 class="main__title">Register</h1>
+<hr class="thic">
+  <form class="register__form"  novalidate>
+    <label for="username">Username:<br>
+    <input id="username" class="text-input" type="text" name="username" placeholder="Username" required>
+    </label>
+    <p></p>
+    <label for="email">Email:<br>
+    <input id="email" class="text-input" type="email" name="email" placeholder="Email" required>
+    </label>
+    <p id="emailErr" class="error"></p>
+    <label for="password">Password:<br>
+    <input id="password" class="text-input" type="password" name="password" placeholder="Password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+    </label>
+    <p id="passwordErr" class="error"></p>
+    
+    <label for="confirmPassword">Confirm password:<br>
+    <input id="confirmPassowrd" class="text-input" type="password" name="confirmPassword" placeholder="Confirm password" required>
+    </label>
+    <p id="confirmErr" class="error"></p>
+
+    <button class="submit btnT" type="submit"> Register </button>
+  </form>
+  <div class="errorMsg" style="display:flex; justify-content:center; color:red">{{error}}</div>
+
+</section>
+</body>

@@ -22,7 +22,6 @@ addForm.addEventListener("submit", (e) => {
 
     const newtask = {
       tasktext: todo,
-      author_id: 1,
       taskdate: timestamp,
     };
     // e.preventDefault();
@@ -85,7 +84,6 @@ ullist.addEventListener("click", (e) => {
       console.log(todo, e.target);
       let data = {
         subtasktext: todo,
-        author_id: 1,
         task_id:
           e.target.parentElement.parentElement.firstChild.nextSibling
             .classList[1],
@@ -177,3 +175,112 @@ search.addEventListener("keyup", () => {
 
   filterTodos(term);
 });
+
+// app drawer logic
+const drawerBtn = document.querySelector(".toggleBTN");
+const appDrawer = document.querySelector(".app_drawer");
+const divContainer = document.querySelector("div.container");
+drawerBtn.addEventListener("click", () => toggleDrawer(appDrawer));
+
+divContainer.addEventListener("click", () => {
+  if (appDrawer.classList.contains("app_drawer--visible")) {
+    appDrawer.classList.remove("app_drawer--visible");
+  }
+});
+
+function toggleDrawer(drawer) {
+  drawer.classList.toggle("app_drawer--visible");
+}
+
+//button animation
+
+/// client side authentication
+
+function clinetAuth() {
+  console.log("loading ClientAuth");
+  let username = document.querySelector("#username");
+  let email = document.querySelector("#email");
+  let password = document.querySelector("#password");
+  let confirmPassword = document.querySelector("#confirmPassowrd");
+  let registerform = document.querySelector(".register__form");
+
+  let emailErr = document.querySelector("#emailErr");
+  let passwordErr = document.querySelector("#passwordErr");
+  let confirmErr = document.querySelector("#confirmErr");
+
+  let checkEmail = function () {
+    if (email.validity.typeMismatch) {
+      displayErr(emailErr, "Please enter a valid email address");
+    } else if (email.validity.valueMissing) {
+      displayErr(emailErr, "Please enter an email address");
+    } else {
+      displayErr(emailErr, "");
+      return true;
+    }
+  };
+
+  let checkPw = function () {
+    if (password.validity.patternMismatch) {
+      displayErr(
+        passwordErr,
+        "Password must contain at least eight characters, including one letter and one number"
+      );
+    } else if (password.validity.valueMissing) {
+      displayErr(passwordErr, "Please enter a password");
+    } else {
+      displayErr(passwordErr, "");
+      return true;
+    }
+  };
+
+  let checkConfirmPw = function () {
+    if (password.value != confirmPassword.value) {
+      displayErr(confirmErr, "Passwords do not match");
+    } else if (confirmPassword.validity.valueMissing) {
+      displayErr(confirmErr, "Please confirm your password");
+    } else {
+      displayErr(confirmErr, "");
+      return true;
+    }
+  };
+
+  function displayErr(errElem, errMsg) {
+    errElem.innerText = errMsg;
+  }
+
+  email.addEventListener("focusout", checkEmail);
+  password.addEventListener("focusout", checkPw);
+  confirmPassword.addEventListener("focusout", checkConfirmPw);
+
+  registerform.addEventListener("submit", function (event) {
+    if (!checkEmail()) {
+      event.preventDefault();
+    }
+    if (!checkPw()) {
+      event.preventDefault();
+    }
+    if (!checkConfirmPw()) {
+      event.preventDefault();
+    }
+    if (checkEmail() && checkPw() && checkConfirmPw()) {
+      console.log("all checks passed");
+      fetch("/addUser", {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify({
+          username: username.value,
+          email: email.value,
+          password: password.value,
+          confirmPassword: password.value,
+        }),
+      });
+    }
+  });
+}
+
+let url = window.location.href.url.split("/");
+let rest = url[url.length - 1];
+console.log(url, rest);
+if (rest == "register") {
+  clinetAuth();
+}
