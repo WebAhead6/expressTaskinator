@@ -4,20 +4,22 @@ authentication powered Todo List mainly created as my roomate and I have trouble
 this app is here to solve the problem
 
 future features:
-[] multiple rooms support
-[] forget password
+
+> > [] multiple rooms support<br>
+> > [] forget password<br>
 
 Done:
-[x] Working Todo
-[x] marking SubTasks as completed
-[x] delete, add, appeend any/to task
-[x] search
-[x] authentication
-[x] database driven
-[x] Mobile First-approach
-[x] Login, Register, Logout
-[x] error page
-[x] appdrawer
-[x] styling
-[x] responsive design
-[x] MVC architecture
+
+> > [x] Working Todo<br>
+> > [x] marking SubTasks as completed<br>
+> > [x] delete, add, appeend any/to task<br>
+> > [x] search<br>
+> > [x] authentication<br>
+> > [x] database driven<br>
+> > [x] Mobile First-approach<br>
+> > [x] Login, Register, Logout<br>
+> > [x] error page<br>
+> > [x] appdrawer<br>
+> > [x] styling<br>
+> > [x] responsive design<br>
+> > [x] MVC architecture<br>
