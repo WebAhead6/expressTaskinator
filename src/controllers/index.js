@@ -7,62 +7,47 @@ const auth = require("./auth");
 const error = require("./error");
 const model = require("../models/model");
 
-// // add home route
-// router.get("/", middleware.authCheck, home.get);
-// router.get("/login", auth.loginPage);
-// router.get("/register", auth.registerPage);
-// router.post(
-//   "/authenticate",
-//   middleware.loggingTime.loggingTimeBefore,
-//   auth.authenticate
-// );
-// router.post("/addUser", auth.addUser);
-// router.get(
-//   "/logout",
-//   middleware.authCheck,
-//   middleware.loggingTime.loggingTimeAfter,
-//   auth.logout
-// );
-// router.use(error.client);
-// router.use(error.server);
-
-// module.exports = router;
-
-//====
 // homepage
 router.get("/", middleware.authCheck, (req, res) => {
   // console.log("we are rendering home!");
   let taskData = {};
-  model.getAllTasks().then((data) => {
-    // console.log(data);
-    // here we are building a datastructure and sending it to the front end based on what is needed to be displayed
-    data.forEach((ele) => {
-      if (taskData[ele.taskid]) {
-        taskData[ele.taskid].sub.push({
-          text: ele.subtasktext,
-          strike: ele.strike,
-        });
-      } else {
-        if (ele.subtaskid) {
-          taskData[ele.taskid] = {
-            id: ele.taskid,
-            text: ele.tasktext,
-            sub: [{text: ele.subtasktext, strike: ele.strike}],
-          };
-        } else {
-          taskData[ele.taskid] = {
-            user: ele.username,
-            id: ele.taskid,
-            text: ele.tasktext,
-            sub: [],
-          };
-        }
-      }
-    });
+  model
+    .getAllTasks()
+    .then((data) => {
+      // console.log(data);
+      // here we are building a datastructure and sending it to the front end based on what is needed to be displayed
 
-    // console.log(req.cookies);
-    res.render("home", {taskData});
-  });
+      data.forEach((ele) => {
+        if (taskData[ele.taskid]) {
+          taskData[ele.taskid].sub.push({
+            text: ele.subtasktext,
+            strike: ele.strike,
+          });
+        } else {
+          if (ele.subtaskid) {
+            taskData[ele.taskid] = {
+              id: ele.taskid,
+              text: ele.tasktext,
+              sub: [{text: ele.subtasktext, strike: ele.strike}],
+            };
+          } else {
+            taskData[ele.taskid] = {
+              user: ele.username,
+              id: ele.taskid,
+              text: ele.tasktext,
+              sub: [],
+            };
+          }
+        }
+      });
+
+      // console.log(req.cookies);
+      res.render("home", {taskData});
+    })
+    .catch((err) => {
+      console.log("gettask did not work as intended! ", err);
+      res.render("home");
+    });
 });
 
 // add task handler
