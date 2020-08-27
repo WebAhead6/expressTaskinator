@@ -14,7 +14,7 @@ router.get("/", middleware.authCheck, (req, res) => {
   model
     .getAllTasks()
     .then((data) => {
-      // console.log(data);
+      console.log(data);
       // here we are building a datastructure and sending it to the front end based on what is needed to be displayed
 
       data.forEach((ele) => {
@@ -26,6 +26,7 @@ router.get("/", middleware.authCheck, (req, res) => {
         } else {
           if (ele.subtaskid) {
             taskData[ele.taskid] = {
+              user: ele.username,
               id: ele.taskid,
               text: ele.tasktext,
               sub: [{text: ele.subtasktext, strike: ele.strike}],

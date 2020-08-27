@@ -141,7 +141,7 @@ li.main {
   border: 1px solid #fab835;
   border-top: 0px;
   border-left: 0px;
-  border-radius: 40px 40px 40px 40px;
+  border-radius: 10px;
   padding: 1.5%;
   padding-right: 3%;
 
@@ -214,10 +214,15 @@ hr.dashed {
 }
 
 .igroup {
-  width: 10%;
+  width: 20%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.igroup i {
+  transform: scale(1.2);
 }
 /***********************************************
    screen adjustment
@@ -227,7 +232,7 @@ hr.dashed {
     font-size: 80%;
   }
   .insideli {
-    font-size: 50%;
+    font-size: 80%;
   }
 }
 
@@ -399,7 +404,7 @@ form > label > input {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: white;
-  font-size: x-small;
+  font-size: xx-small;
   font-style: italic;
   text-transform: capitalize;
 }
@@ -438,8 +443,4 @@ a:focus,
 a:active {
   text-decoration: none;
   color: inherit;
-}
-
-i + i {
-  margin-left: 10px;
 }
