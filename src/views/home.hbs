@@ -9,14 +9,15 @@
                     {{#each this.sub}}
                     
                               <li class="text-center subli">
+                                 <div class="igroup">
+                                        <i class="fa fa-trash delete" aria-hidden="true"></i>
+                                  </div>
                                   {{#if this.strike}}
                                       <span class="todotext insideli striked">{{this.text}}</span>
                                      {{else}}
                                       <span class="todotext insideli">{{this.text}}</span>
                                   {{/if}}
-                                  <div class="igroup">
-                                        <i class="fa fa-trash delete" aria-hidden="true"></i>
-                                  </div>
+                                 
                               </li>
                       
                     {{/each}}

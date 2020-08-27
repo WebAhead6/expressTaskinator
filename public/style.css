@@ -10,83 +10,6 @@ body {
   margin: 0;
 }
 
-#notfound {
-  position: relative;
-  height: 100vh;
-}
-
-#notfound .notfound {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.notfound {
-  max-width: 767px;
-  width: 100%;
-  line-height: 1.4;
-  padding: 0px 15px;
-}
-
-.notfound .notfound-404 {
-  position: relative;
-  height: 150px;
-  line-height: 150px;
-  margin-bottom: 25px;
-}
-
-.notfound .notfound-404 h1 {
-  font-family: "Titillium Web", sans-serif;
-  font-size: 186px;
-  font-weight: 900;
-  margin: 0px;
-  text-transform: uppercase;
-  background: url("../img/text.png");
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: cover;
-  background-position: center;
-}
-
-.notfound h2 {
-  font-family: "Titillium Web", sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.notfound p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 0px;
-  text-transform: uppercase;
-}
-
-.notfound a {
-  font-family: "Titillium Web", sans-serif;
-  display: inline-block;
-  text-transform: uppercase;
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  background: #5c91fe;
-  padding: 10px 40px;
-  font-size: 14px;
-  font-weight: 700;
-  border-radius: 1px;
-  margin-top: 15px;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
-}
-
-.notfound a:hover {
-  opacity: 0.8;
-}
-
 @media only screen and (max-width: 767px) {
   .notfound .notfound-404 {
     height: 110px;
@@ -96,11 +19,37 @@ body {
     font-size: 120px;
   }
 }
+/* white theme*/
 h2 {
   text-align: center;
+  color: black;
+}
+h5 {
+  color: black;
+}
+.loginPlease {
+  color: #414141;
+}
+footer {
+  color: black;
+}
+label {
+  color: #414141;
+}
+.main__title {
+  color: black;
+}
+.forgotPass {
+  color: #f0a0a0;
 }
 h2:before,
 h2:after {
+  font-family: "Some cool font with glyphs", serif;
+  content: "\00d7"; /* Some fancy character */
+  color: #f13d37;
+}
+bkh2:before,
+nkh2:after {
   font-family: "Some cool font with glyphs", serif;
   content: "\00d7"; /* Some fancy character */
   color: #ffc857;
@@ -113,6 +62,9 @@ h2:after {
 }
 
 body {
+  background-color: #ffffff;
+}
+bkbody {
   background-color: #202e3b;
 }
 /***********************************************
@@ -133,10 +85,29 @@ li .todotext {
   text-align: left;
 }
 li .todotext .igroup {
-  width: 100%;
   text-align: left;
 }
+.subli .igroup {
+  width: 10%;
+  padding-bottom: 0;
+}
+
 li.main {
+  width: 100%;
+  border: 1px solid #f13d37;
+  border-top: 0px;
+  border-left: 0px;
+  border-radius: 10px;
+  padding: 1.5%;
+  padding-right: 3%;
+
+  color: #f13d37;
+  background-color: #ffffff;
+  font-size: 24px;
+  transition: 0.3s ease-in-out;
+}
+
+bkli.main {
   width: 100%;
   border: 1px solid #fab835;
   border-top: 0px;
@@ -152,9 +123,11 @@ li.main {
 }
 
 li.main:hover {
+  background-color: #ffffffd8;
+}
+bkli.main:hover {
   background-color: #42678c;
 }
-
 i {
   transition: 0.3s ease;
   animation-delay: 0.5s;
@@ -178,6 +151,18 @@ i:hover {
   font-family: inherit;
   width: 100%;
   border: 0;
+  border-bottom: 2px solid rgb(58, 58, 58);
+  outline: 0;
+  font-size: 1.3rem;
+  color: rgb(0, 0, 0);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.bkform_field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
   border-bottom: 2px solid gray;
   outline: 0;
   font-size: 1.3rem;
@@ -186,13 +171,16 @@ i:hover {
   background: transparent;
   transition: border-color 0.2s;
 }
-
 hr.dashed {
   border: 0;
   border-bottom: 2px dashed #ccc;
 }
 
 .striked {
+  text-decoration: line-through;
+  color: #3a3636;
+}
+.bkstriked {
   text-decoration: line-through;
   color: #fa737c;
 }
@@ -241,13 +229,22 @@ hr.dashed {
   ***********************************************/
 :root {
   --limited-width-container: 61.25em;
+  --color-text-main: rgb(46, 46, 46);
+}
+:bkroot {
+  --limited-width-container: 61.25em;
   --color-text-main: rgb(199, 199, 199);
 }
-
 .navbar_ {
+  padding: 1rem 0;
+  box-shadow: 0 0 3px rgba(189, 189, 189, 0.2);
+}
+
+.bknavbar_ {
   padding: 1rem 0;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
+
 .navbar_ > ul > li {
   display: flex;
   justify-content: space-between;
@@ -285,6 +282,17 @@ hr.dashed {
   outline: none;
   background-image: url("/iconfinder_menu-alt_134216.svg");
   cursor: pointer;
+  color: #111111;
+  padding: 15px 16px;
+  border: #363636;
+  background-color: transparent;
+}
+.bktoggleBTN {
+  display: flex;
+  user-select: none;
+  outline: none;
+  background-image: url("/iconfinder_menu-alt_134216.svg");
+  cursor: pointer;
   color: #ffffff;
   padding: 15px 16px;
   border: #ffffff;
@@ -302,6 +310,18 @@ hr.dashed {
   width: 40%;
   height: 100vh;
   transform: translateX(-100%);
+  background: linear-gradient(to bottom, #ffffff, #f35151);
+  transition: all 0.5s ease-in;
+  box-shadow: 0.1px 0.1px;
+  z-index: 1;
+}
+
+.bkapp_drawer {
+  text-align: center;
+  position: fixed;
+  width: 40%;
+  height: 100vh;
+  transform: translateX(-100%);
 
   background: linear-gradient(to bottom, #202e3b, #00417e);
   transition: all 0.5s ease-in;
@@ -309,6 +329,9 @@ hr.dashed {
   z-index: 1;
 }
 .app_drawer a {
+  color: rgb(10, 10, 10);
+}
+.bkapp_drawer a {
   color: white;
 }
 .app_drawer--visible {
@@ -370,6 +393,17 @@ form > label > input {
   border: 1px solid rgb(146, 148, 248);
   position: relative;
   overflow: hidden;
+  color: rgb(0, 0, 0);
+  width: 50%;
+  background: transparent;
+  padding: 10px;
+  transition: all 0.5s ease-in;
+}
+.bkbtnT {
+  text-decoration: none;
+  border: 1px solid rgb(146, 148, 248);
+  position: relative;
+  overflow: hidden;
   color: white;
   width: 50%;
   background: transparent;
@@ -403,6 +437,15 @@ form > label > input {
 .username {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: rgba(83, 83, 83, 0.637);
+  font-size: xx-small;
+  font-style: italic;
+  text-transform: capitalize;
+}
+
+.bkusername {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: white;
   font-size: xx-small;
   font-style: italic;
@@ -423,10 +466,17 @@ form > label > input {
 .error__desc {
   text-align: center;
   font-size: 1.5em;
+  color: rgb(39, 39, 39);
+}
+.bkerror__desc {
+  text-align: center;
+  font-size: 1.5em;
   color: white;
 }
-
 .error__msg {
+  color: rgb(34, 34, 34);
+}
+.bkerror__msg {
   color: rgb(255, 255, 255);
 }
 
