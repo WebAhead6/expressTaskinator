@@ -1,2 +1,8 @@
 # dotenv environment variables file
 .envgit a
+
+# Dependency directories
+node_modules/
+jspm_packages/
+# Optional npm cache directory
+.npm
