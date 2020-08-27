@@ -284,3 +284,8 @@ console.log(url, rest);
 if (rest == "register") {
   clinetAuth();
 }
+// forogt password
+if (rest == "login") {
+  let forgotPass = document.querySelector(".forgetPass");
+  forgotPass.addEventListener("click", () => {});
+}
