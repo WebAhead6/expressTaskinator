@@ -429,7 +429,7 @@ form > label > input {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 400px;
+  width: 350px;
   height: 200px;
 }
 a,
