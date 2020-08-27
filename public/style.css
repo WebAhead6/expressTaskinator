@@ -175,6 +175,9 @@ hr.dashed {
   border: 0;
   border-bottom: 2px dashed #ccc;
 }
+p {
+  color: black;
+}
 
 .striked {
   text-decoration: line-through;
