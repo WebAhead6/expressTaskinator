@@ -303,7 +303,9 @@ hr.dashed {
   box-shadow: 1px 1px;
   z-index: 1;
 }
-
+.app_drawer a {
+  color: white;
+}
 .app_drawer--visible {
   /*styles for when the drawer is visible*/
   transform: translateX(-50%);
