@@ -430,3 +430,10 @@ form > label > input {
   width: 400px;
   height: 200px;
 }
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
