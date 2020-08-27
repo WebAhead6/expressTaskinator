@@ -439,3 +439,7 @@ a:active {
   text-decoration: none;
   color: inherit;
 }
+
+i + i {
+  margin-left: 10px;
+}
