@@ -1,6 +1,6 @@
 {
   "name": "taskinator-express",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "express todolist",
   "main": "index.js",
   "scripts": {
@@ -23,5 +23,13 @@
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.4",
     "serve-favicon": "^2.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebAhead6/expressTaskinator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebAhead6/expressTaskinator/issues"
+  },
+  "homepage": "https://github.com/WebAhead6/expressTaskinator#readme"
 }
