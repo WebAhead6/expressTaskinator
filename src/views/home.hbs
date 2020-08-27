@@ -3,7 +3,7 @@
      {{#each taskData}}
         <li class="text-center main">
           <span class="todotext {{this.id}}">
-              {{this.text}} - {{this.user}}
+              {{this.text}} - <span class="username">{{this.user}}</span>
                   {{#if this.sub.length}}
                   <ul>
                     {{#each this.sub}}
@@ -50,5 +50,6 @@
     </div>
 {{else}}
   <div class="loginPlease">You need to Log in in Order to see Taskinator's lists</div>
-
+  <hr class="thic">
+  <iframe src="https://giphy.com/embed/CpgNjk2E54p7W" width="170" height="170" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/lol-shia-labeouf-CpgNjk2E54p7W">via GIPHY</a></p>
 {{/if}}
