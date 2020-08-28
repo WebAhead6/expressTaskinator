@@ -106,19 +106,24 @@ ullist.addEventListener("click", (e) => {
   if (classLists.contains("delete")) {
     // the pressed element
     // let target = e.target.parentElement.parentElement.firstChild.nextSibling;
-    let target = e.target.parentElement.parentElement.children[1];
+    let target = e.target.parentElement.parentElement.children[0];
     // e.target.parentElement.parentElement.remove();
     let data = {};
-    console.log("=====>", target);
+    // console.log("=====>", target);
 
     // check if we are clicking a subtask
-    if (target.classList.contains("insideli")) {
+    if (target.parentElement.children[1].classList.contains("insideli")) {
+      // console.log(target.parentElement.children[1]);
       let mainTaskID =
         target.parentElement.parentElement.parentElement.classList[1];
 
+      console.log(mainTaskID);
+      let subtaskContent = target.parentElement.children[1].textContent;
+
+      console.log("main task id", mainTaskID);
       data = {
         taskid: mainTaskID,
-        text: target.textContent,
+        text: subtaskContent,
         flag: "sub",
       };
     } else {
