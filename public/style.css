@@ -31,7 +31,11 @@ h5 {
   color: #414141;
 }
 footer {
+  position: absolute;
   color: black;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 label {
   color: #414141;
