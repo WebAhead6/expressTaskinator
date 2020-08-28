@@ -105,9 +105,11 @@ ullist.addEventListener("click", (e) => {
   }
   if (classLists.contains("delete")) {
     // the pressed element
-    let target = e.target.parentElement.parentElement.firstChild.nextSibling;
+    // let target = e.target.parentElement.parentElement.firstChild.nextSibling;
+    let target = e.target.parentElement.parentElement.children[1];
     // e.target.parentElement.parentElement.remove();
     let data = {};
+    console.log("=====>", target);
 
     // check if we are clicking a subtask
     if (target.classList.contains("insideli")) {

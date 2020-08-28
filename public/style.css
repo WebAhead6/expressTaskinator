@@ -141,10 +141,10 @@ i:hover {
   justify-content: space-between;
   align-items: flex-end;
   font-size: small;
-  padding-left: 40px;
 }
 .insideli {
   font-size: 17px;
+  padding-left: 10%;
 }
 
 .form_field {
